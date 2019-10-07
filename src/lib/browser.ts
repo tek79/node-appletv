@@ -24,6 +24,9 @@ export class Browser {
     this.services = [];
 
     let that = this;
+    this.browser.on('error', function(e) {
+      console.log("browser on error", e.message, e.stack);
+    });
     this.browser.on('serviceUp', function(service) {
       let device = new AppleTV(service);
       if (that.uniqueIdentifier && device.uid == that.uniqueIdentifier) {
